@@ -1,0 +1,11 @@
+{
+    "secret": "23812hnciasudfgounastfaenrviayelukfgkds",
+    "name": "connection.sid",
+    "store": {
+        "type": "redis",
+        "host": "localhost",
+        "port": 6379 
+    },
+    "paramName": "X-Session",
+    "source": "header"
+}

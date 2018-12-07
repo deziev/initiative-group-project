@@ -1,0 +1,55 @@
+{
+    "formatters": {
+        "simple": {
+            "format": "[%(levelname)s][%(name)s] %(message)s",
+            "colorize": false
+        },
+        "details": {
+            "format": "[%(date)s] %(name)s.%(levelname)s: %(message)s",
+            "colorize": true
+        },
+        "express": {
+            "format": "[%(date)s]: %(message)s",
+            "colorize": true
+        },
+        "scripts": {
+            "format": "[%(date)s]: %(message)s",
+            "colorize": true
+        },
+        "orm": {
+            "format": "[%(date)s] [SQL]: %(message)s",
+            "colorize": true
+        }
+    },
+    "handlers": {
+        "terminal": {
+            "class": "intel/handlers/console",
+            "formatter": "details",
+            "level": "DEBUG"
+        },
+        "express": {
+            "class": "intel/handlers/console",
+            "formatter": "express",
+            "level": "INFO"
+        },
+        "orm": {
+            "class": "intel/handlers/console",
+            "formatter": "orm",
+            "level": "INFO"
+        }
+    },
+    "loggers": {
+        "main": {
+            "handlers": ["terminal"],
+            "level": "DEBUG"
+        },
+        "express": {
+            "handlers": ["express"],
+            "level": "INFO"
+        },
+        "orm": {
+            "handlers": ["orm"],
+            "level": "INFO"
+        }
+    }
+}
