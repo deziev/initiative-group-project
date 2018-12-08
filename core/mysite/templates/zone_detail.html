@@ -27,10 +27,6 @@
               <div class="col-12">
 
                 <div id='map'></div>
-                <div class='calculation-box'>
-                    <p>Draw a polygon using the draw tools.</p>
-                    <div id='calculated-area'></div>
-                </div>
 
 
               </div>
@@ -59,6 +55,20 @@
                   <hr>
                   <p>Statistics:</p>
                   <p>{{ zone.coordinate }}</p>
+
+
+                    <table id ='myTable'>
+                        <thead>
+                        <tr>
+                          <th width="25%">UUID</th>
+                          <th width="25%">Time</th>
+                          <th width="25%">Lat</th>
+                          <th width="25%">Long</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        </tbody >        
+                    </table>
 
               </div>
             </div>
@@ -128,6 +138,30 @@ map.on('load', function () {
         }
     });
 });
+</script>
+
+<script type="text/javascript">   
+    $( document ).ready(function() {
+       setInterval(function(){
+            $.getJSON('/dasein/update/',
+                    function (data) {
+                        var json = data['latest_results_list'];
+                        console.log(json);
+                        var tr;
+                         $('#myTable tbody').html("");
+                        for (var i = 0; i < json.length; i++) {
+                            tr = $('<tr/>');
+                            tr.append("<td>" + json[i].uuid + "</td>");
+                            tr.append("<td>" + json[i].time + "</td>");
+                            tr.append("<td>" + json[i].lat + "</td>");
+                            tr.append("<td>" + json[i].long + "</td>");
+                             $('#myTable tbody').append(tr);
+
+                        }
+                    });
+       },3000);
+    });
+
 </script>
 
 {% endblock %}

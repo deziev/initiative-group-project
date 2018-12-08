@@ -3,6 +3,36 @@ from dasein.models import *
 from dasein.forms import *
 from common.models import *
 
+from django.http import JsonResponse
+import random
+import math
+import time
+
+def update(request):
+
+    values = []
+    for i in range(0, 50):
+        uuid = random.randint(0,500)
+        timestamp = time.time()
+        base_lat = 55.7
+        base_lng = 37.6
+
+        lat = base_lat + random.random()/100
+        lng = base_lng + random.random()/100
+
+        results = {
+            "uuid" : uuid,
+            "time" : timestamp,
+            "lat" : lat,
+            "long" : lng,
+        }
+        values.append(results)
+
+    print(values)
+
+    return JsonResponse({'latest_results_list':values})
+
+
 def create_zone(request):
     user = get_object_or_404(User, pk = request.user.pk)
 
@@ -17,7 +47,6 @@ def create_zone(request):
             zone = zone_form.save(commit=False)
             zone.user = user
             zone.coordinate = coordinates
-            print(coordinates)
             zone.save()
             
             return redirect("dasein:list_zone")
