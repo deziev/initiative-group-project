@@ -1,0 +1,48 @@
+{
+  "name": "ts-service",
+  "version": "1.0.0",
+  "description": "service",
+  "main": "index.js",
+  "author": "deziev <nyarly51@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn install --pure-lockfile",
+    "start": "node dist/app.js",
+    "start-dev": "node_modules/.bin/nodemon dist/app.js",
+    "compile": "rm -rf dist && ./node_modules/.bin/tsc",
+    "compile-dev": "rm -rf dist && ./node_modules/.bin/tsc --watch",
+    "lint": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json",
+    "lint-fix": "./node_modules/.bin/tslint --project tsconfig.json --config tslint.json --fix",
+    "typeorm-config": "node dist/bin/db-config.js > ormconfig.json",
+    "migrate": "yarn run typeorm-config && ./node_modules/.bin/typeorm migration:run",
+    "migrate-undo": "yarn run typeorm-config && ./node_modules/.bin/typeorm migration:revert"
+  },
+  "dependencies": {
+    "@types/cors": "2.8.4",
+    "@types/express": "4.16.0",
+    "@types/morgan": "1.7.35",
+    "@types/node": "10.11.4",
+    "@types/redis": "2.8.7",
+    "@types/uid-safe": "2.1.2",
+    "axios": "0.18.0",
+    "body-parser": "1.18.3",
+    "class-transformer": "0.1.9",
+    "cors": "2.8.4",
+    "express": "4.16.3",
+    "hard-rejection": "1.0.0",
+    "intel": "1.2.0",
+    "morgan": "1.9.1",
+    "redis": "2.8.0",
+    "reflect-metadata": "0.1.12",
+    "routing-controllers": "0.7.7",
+    "source-map-support": "0.5.9",
+    "tsconfig-paths": "3.6.0",
+    "typescript": "3.1.1",
+    "uid-safe": "2.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.7",
+    "tslint": "5.11.0"
+  }
+}

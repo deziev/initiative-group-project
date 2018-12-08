@@ -1,0 +1,5 @@
+{
+    "host": "localhost",
+    "port": 29365,
+    "workers": 1
+}

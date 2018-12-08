@@ -1,0 +1,1 @@
+export { IntelLogger as Logger } from 'intel-types';

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+
+service=$1
+remote_user=root
+remote_host=51.15.116.61
+
+echo "[DEPLOY] Running deploy for $service"
+
+cd $service && ./bin/build && cd ..
+
+echo "[DEPLOY] Creating Package $service.tar.gz"
+
+rm -rf $service.tar.gz
+tar -czf $service.tar.gz -C $(pwd)/$service .
+
+echo "[DEPLOY] Delivering package to server"
+
+ssh $remote_user@$remote_host "rm -rf /tmp/$service" 
+scp $service.tar.gz $remote_user@$remote_host:/tmp
+
+ssh $remote_user@$remote_host "rm -rf /opt/${service}"
+ssh $remote_user@$remote_host "mkdir /opt/${service}"
+ssh $remote_user@$remote_host "tar -xzf /tmp/${service}.tar.gz -C /opt/${service}"
+
+echo "[DEPLOY] Deploying package"
+ssh $remote_user@$remote_host "rm -rf /etc/supervisor/conf.d/${service}.conf"
+ssh $remote_user@$remote_host "ln -s /opt/${service}/env/${service}.conf /etc/supervisor/conf.d/${service}.conf"
+ssh $remote_user@$remote_host "service supervisor restart"
+
+
+# sudo service supervisor restart
