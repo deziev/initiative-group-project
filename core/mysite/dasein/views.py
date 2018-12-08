@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from dasein.models import *
 from dasein.forms import *
 from common.models import *
-# Create your views here.
 
 def create_zone(request):
     user = get_object_or_404(User, pk = request.user.pk)
@@ -37,11 +36,23 @@ def edit_zone(request):
 	pass
 
 def view_zone(request, pk):
-	pass
+    zone = get_object_or_404(Zone, pk = pk)
+    my_list  = str(zone.coordinate).split(",")
+    final_zone = []
+
+    count = 0
+    #for element in my_list:
+
+    for x, y in zip(*[iter(my_list)] * 2):
+        #print(x, y)
+        final_zone.append([float(x), float(y)])
+        #print()
+
+    return render(request, 'zone_detail.html', {'zone' : zone, 'coordinates' : final_zone })
 
 def list_zone(request):
     user = get_object_or_404(User, pk = request.user.pk)
 
-    zones = Zone.objects.filter(user = user)
+    zone = Zone.objects.filter(user = user)
 
-    return render(request, 'zone_list.html', {'zones' : zones,})
+    return render(request, 'zone_list.html', {'zones' : zone})

@@ -22,6 +22,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -67,34 +69,27 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': 'root',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'mydatabase',
 #     }
 # }
+
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dfk1elq43ngnsg',
+        'USER': 'flpkxzcghqmvio',
+        'PASSWORD': 'd7690ce1237f95256574d0e25079e4ac26da3db838916e104acebce5ddceb20d',
+        'HOST': 'ec2-54-235-133-42.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dfnep19e73i55i',
-#         'USER': 'zustkupeycnook',
-#         'PASSWORD': '088ef7ac111525d0bb3457aa50260877ebbc923f5d37e8e0047d0f27ba5dcfbc',
-#         'HOST': 'ec2-54-235-212-58.compute-1.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 

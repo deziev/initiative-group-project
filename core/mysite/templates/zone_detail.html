@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content%}
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+    body { margin:0; padding:0; }
+    #map { position:relative; height: 500px; width: 100%; }
+</style>
+
+
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css' type='text/css'/>
+
+
+<!-- OPPORTUNITY VIEW STARTS -->
+  <div class="main_container" id="maincontainer">
+    <div class="overview_form_block row marl justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          
+          <div class="card-body" id="datashow">
+            <div class="row mx-auto">
+              <div class="col-12">
+
+                <div id='map'></div>
+                <div class='calculation-box'>
+                    <p>Draw a polygon using the draw tools.</p>
+                    <div id='calculated-area'></div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          
+          <div class="card-body" id="datashow">
+            <div class="row mx-auto">
+              <div class="col-6" style="padding-left: 0;">
+                <h1>{{zone.zone_name}}</h1>
+                <br>
+              </div>
+              <div class="col-6" style="text-align: right;">
+                <a href="{% url 'dasein:edit_zone' pk=zone.pk %}" class="btn btn-success edit">Edit</a>
+              </div>
+            </div>
+            <div class="row marl no-gutters">
+              <div class="col-md-12">
+                  <p>Description:</p>
+                  <p>{{ zone.description }}</p>
+                  <hr>
+                  <p>Statistics:</p>
+                  <p>{{ zone.coordinate }}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGVuaXNvbHQ5NSIsImEiOiJjanBlancwM3MwMTBvM3BvNnk0cG93NnE3In0.EV4GsgyWMxN9B6HfJqIfAA';
+
+
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v9', //hosted style id
+    center: [37.6173, 55.7558], // starting position
+    zoom: 12 // starting zoom
+});
+
+
+map.on('load', function () {
+
+  map.addSource("point", {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+               "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-77.03238901390978, 38.913188059745586]
+    },
+    "properties": {
+       "title": "Mapbox DC",
+       "marker-symbol": "default_marker"
+    }
+
+            }]
+        }
+    });
+
+
+
+    map.addLayer({
+        'id': 'maine',
+        'type': 'fill',
+        'source': {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [{{coordinates}}]
+                            }
+
+            }
+        },
+        'layout': {},
+        'paint': {
+            'fill-color': '#088',
+            'fill-opacity': 0.8
+        }
+    });
+});
+</script>
+
+{% endblock %}

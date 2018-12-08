@@ -41,12 +41,12 @@
               {% for zone in zones %}
               <tr class="text-center">
                 <td scope="row">{{ forloop.counter }}</td>
-                <td><a href="/">{{ zone.zone_name }}</a></td>
+                <td><a href="{% url 'dasein:view_zone' pk=zone.pk %}">{{ zone.zone_name }}</a></td>
                 <td><a>{{ zone.description }}</a></td>
                 <td><a>{{ zone.coordinate|truncatechars:30 }}</a></td>
                 <td class="actions">
-                  <a href="/" class="btn btn-info view"><i class="fas fa-eye"></i></a>
-                  <a href="/" style="background-color: #7ED321; border: 0px; color: white;" class="btn btn-success edit"><i class="fas fa-cogs"></i></a>
+                  <a href="{% url 'dasein:view_zone' pk=zone.pk %}" class="btn btn-info view"><i class="fas fa-eye"></i></a>
+                  <a href="{% url 'dasein:edit_zone' pk=zone.pk %}" style="background-color: #7ED321; border: 0px; color: white;" class="btn btn-success edit"><i class="fas fa-cogs"></i></a>
                   <a href="{% url 'dasein:remove_zone' pk=zone.id %}" style="background-color: #D0021B; border: 0px; color: white;" class="btn btn-danger delete remove_account"><i class="fas fa-trash"></i></a>
                 </td>
               </tr>
