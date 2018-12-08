@@ -15,23 +15,3 @@ export class Zone {
         return d3.geoContains(this.segments, point);
     }
 }
-
-const multiPolygon: MultiPolygon = {
-    type: 'MultiPolygon',
-    coordinates: [[[
-        [0, 0],
-        [0, 1],
-        [1, 1],
-        [1, 0],
-        [0, 0]
-    ]]]
-};
-
-const zone = new Zone(multiPolygon);
-console.log(zone.containsPoint([0.5, 0.5]));
-// console.log(d3.geoContains(polygon, [0.5, 0.5]));
-// zone.addSegment(polygon);
-// console.log(zone.segments.geometries[0].coordinates);
-// console.log(zone.containsPoint([0.5, 0.5]));
-// console.log(zone);
-
