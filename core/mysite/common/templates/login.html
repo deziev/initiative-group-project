@@ -1,0 +1,93 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dasein App</title>
+    <!-- Bootstrap core CSS -->
+
+    <link rel="stylesheet" href="{% static 'vendors/iconfonts/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.addons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/iconfonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Custom styling plus plugins -->
+
+
+    {% block extralinks %}{% endblock %}
+</head>
+<body class="">
+    <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+      <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+        <div class="row w-100">
+          <div class="col-lg-4 mx-auto">
+            <div class="auto-form-wrapper" style="text-align: center;">
+               <!-- <img src="" style="width: 200px;"> -->
+               <h1>Dasein</h1>
+              <form method="POST" action="" style="text-align: left;">
+                <div class="form-group">
+                  <label class="label">Username</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Username"  id="exampleInputEmail1"  name="email">
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-check-circle-outline"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="label">Password</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" placeholder="*********"  id="exampleInputPassword1" name="password">
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="mdi mdi-check-circle-outline"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                {% if error %}
+                <p>{{ message }}</p>
+                {% endif %}
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary submit-btn btn-block">Login</button>
+                </div>
+                <p>Don't have account? <a href="/signup">Sign Up</a></p>
+                
+              </form>
+            </div>
+            <ul class="auth-footer">
+            <p class="footer-text text-center">copyright © 2018 Dasein. All rights reserved.</p>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/misc.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <!-- End custom js for this page-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+</html>

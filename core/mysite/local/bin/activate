@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/deni/Desktop/projects/hackathon/dasein-backend/mysite/local"
+VIRTUAL_ENV="/Users/deni/Desktop/projects/hackathon/dasein-backend/core/mysite/local"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

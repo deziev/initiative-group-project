@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block breadcrumb %}
+{% block extralinks %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/blog">Blog</a></li>
+    <li class="breadcrumb-item active">Create</li>
+  </ol>
+</nav>
+
+{% endblock %}
+{% block content %}
+  <form id="formid" action='' method="POST" novalidate>
+    <div class="container row marl ">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+          <div class="card-title text-center">
+            New Blog Post
+          </div>
+            <div class="row marl">
+              
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" class="required">Title</label>
+                    {{ post_form.title }}
+                    <span class="error">{{ post_form.title.errors }}</span>
+                  </div>
+              </div>
+
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Text</label>
+                    {{ post_form.text }}
+                    <span class="error">{{ post_form.text.errors }}</span>
+                  </div>
+              </div>
+
+            </div>
+            <br clear="all">
+          </div>
+        </div>
+      </div>
+      <br clear="all">
+      <input type="hidden" id="save_new_form" name="savenewform">
+
+    
+
+    <!-- overview ends here -->
+      <div class="col-12" style="text-align: center; margin-top: 2%;">
+       <button type="submit" class="btn btn-success mr-2">Submit</button>
+
+      <button class="btn btn-light"><a href="/blog">Cancel</a></button>
+    
+    </div>
+
+    </div>
+    
+  </form>
+{% endblock %}

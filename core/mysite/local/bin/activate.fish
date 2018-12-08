@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/deni/Desktop/projects/hackathon/dasein-backend/mysite/local"
+set -gx VIRTUAL_ENV "/Users/deni/Desktop/projects/hackathon/dasein-backend/core/mysite/local"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

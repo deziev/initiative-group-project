@@ -1,4 +1,4 @@
-#!/Users/deni/Desktop/projects/hackathon/dasein-backend/mysite/local/bin/python
+#!/Users/deni/Desktop/projects/hackathon/dasein-backend/core/mysite/local/bin/python
 
 import sys
 import getopt

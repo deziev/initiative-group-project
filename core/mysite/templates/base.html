@@ -1,0 +1,153 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dasein App</title>
+
+    <link rel="stylesheet" href="{% static 'vendors/iconfonts/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.addons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/iconfonts/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extralinks %} {% endblock %}
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background: #00a0ff!important;">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+        <a class="navbar-brand brand-logo" href="{% url 'dasein:list_zone' %}">
+          <!-- <img src="{% static 'images/logo.png' %}" style="height: auto; max-width: 350px;" alt="logo" /> -->
+          <h2 style="color: black; line-height: 60px;">Dasein</h2>
+        </a>
+        <a class="navbar-brand brand-logo-mini" href="{% url 'dasein:list_zone' %}">
+          <!-- <img src="{% static 'images/logo-mini.png' %}" alt="logo" /> -->
+          <p  style="color: black">Dasein</p>
+        </a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center">
+       
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item dropdown d-none d-xl-inline-block">
+            <a class="nav-link dropdown-toggle" id="UserDropdown" href="{% url 'common:profile' %}" data-toggle="dropdown" aria-expanded="false">
+              <span class="profile-text">{{ request.user }}</span>
+              <img class="img-xs rounded-circle" src="http://conceptsoft.co.uk/wp-content/uploads/2015/07/icon-user-default.png" alt="Profile image">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <a class="dropdown-item mt-2" href="{% url 'common:profile' %}">
+                Profile
+              </a>
+              <a class="dropdown-item" href="{% url 'common:logout' %}">
+                Sign Out
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="mdi mdi-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <div class="nav-link">
+              <div class="user-wrapper">
+                <div class="profile-image">
+                  <img src="http://conceptsoft.co.uk/wp-content/uploads/2015/07/icon-user-default.png" alt="profile image">
+                </div>
+                <div class="text-wrapper">
+                  <p class="profile-name">{{ request.user }}</p>
+                  <div>
+                    <span class="status-indicator online"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item {{ clients }}">
+            <a class="nav-link" id="accounts" href="{% url 'dasein:list_zone' %}">
+              <i class="menu-icon mdi mdi-account-card-details"></i>
+              <span class="menu-title">Zones</span>
+            </a>
+          </li>
+          <li class="nav-item {{ tts }}">
+            <a class="nav-link" id="tools" href="{% url 'dasein:create_zone' %}">
+              <i class="menu-icon mdi mdi-chart-line"></i>
+              <span class="menu-title">New Zone</span>
+            </a>
+          </li>
+          <li class="nav-item {{ blog }}">
+            <a class="nav-link" id="tools" href="/tools">
+              <i class="menu-icon mdi mdi-format-text"></i>
+              <span class="menu-title">About Us</span>
+            </a>
+          </li>
+         <!--  <li class="nav-item {{ seo }}">
+            <a class="nav-link" id="tools" href="/tools">
+              <i class="menu-icon mdi mdi-search-web"></i>
+              <span class="menu-title">SEO</span>
+            </a>
+          </li> -->
+         {% if request.user.is_superuser %}
+          <li class="nav-item {{ users_nav }}">
+            <a class="nav-link" id="users" href="{% url 'common:users_list' %}">
+              <i class="menu-icon mdi mdi-account-multiple"></i>
+              <span class="menu-title">Users</span>
+            </a>
+          </li>
+          {% endif %}
+          <li class="nav-item {{ profile }}">
+            <a class="nav-link" id="users" href="{% url 'common:profile' %}">
+              <i class="menu-icon mdi mdi-account"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper" id="mainbody">
+          {% block breadcrumb %}
+        {% endblock %}
+        <!-- breadcrumb ends here -->
+        {% block content %}
+        {% endblock %}
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'vendors/js/vendor.bundle.addons.js' %}"></script>
+  <!-- endinject -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/misc.js' %}"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <!-- End custom js for this page-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+</body>

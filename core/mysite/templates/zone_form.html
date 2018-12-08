@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content%}
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+    body { margin:0; padding:0; }
+    #map { position:relative; height: 500px; width: 100%; }
+</style>
+
+
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css' type='text/css'/>
+
+
+<!-- OPPORTUNITY VIEW STARTS -->
+  <div class="main_container" id="maincontainer">
+    <div class="overview_form_block row marl justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          
+          <div class="card-body" id="datashow">
+            <div class="row mx-auto">
+              <div class="col-12">
+
+                <div id='map'></div>
+                <div class='calculation-box'>
+                    <p>Draw a polygon using the draw tools.</p>
+                    <div id='calculated-area'></div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          
+          <div class="card-body" id="datashow">
+            <div class="row mx-auto">
+              <div class="col-6" style="padding-left: 0;">
+                <h5>Create a Zone</h5>
+                <br>
+              </div>
+              <div class="col-6" style="text-align: right;">
+<!--                 <a href="{% url 'common:edit_user' user_obj.id %}" class="btn btn-success edit">Edit</a>
+ -->              </div>
+            </div>
+            <div class="row marl no-gutters">
+              <div class="col-md-8">
+                <form method="POST" action="">
+
+                {% for field in zone_form %}
+
+                <div class="form-group">
+
+                  <label class="label">{{field.label}}</label>
+
+                  <div class="input-group">
+                    {{ field }}
+                  </div>
+                </div>
+                {% endfor %}
+
+                <input type="hidden" id="coordinates" name="coordinates" value="" />
+
+                <p style="color: red;">{{ zone_form.errors }}</p>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary submit-btn btn-block">Submit</button>
+                </div>
+                
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGVuaXNvbHQ5NSIsImEiOiJjanBlancwM3MwMTBvM3BvNnk0cG93NnE3In0.EV4GsgyWMxN9B6HfJqIfAA';
+/* eslint-disable */
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/light-v9', //hosted style id
+    center: [37.6173, 55.7558], // starting position
+    zoom: 12 // starting zoom
+});
+
+var draw = new MapboxDraw({
+    displayControlsDefault: false,
+    controls: {
+        polygon: true,
+        trash: true
+    }
+});
+map.addControl(draw);
+
+map.on('draw.create', updateArea);
+map.on('draw.delete', updateArea);
+map.on('draw.update', updateArea);
+
+function updateArea(e) {
+    var data = draw.getAll();
+    var answer = document.getElementById('calculated-area');
+
+    var coord = document.getElementById('coordinates');
+
+    if (data.features.length > 0) {
+        var area = turf.area(data);
+        //var coordinate = turf.area(data);
+        var coordinates = data["features"]["0"]["geometry"]["coordinates"]["0"];
+        console.log(coordinates);
+
+
+        coord.value = coordinates;
+
+        // restrict to area to 2 decimal points
+        var rounded_area = Math.round(area*100)/100;
+        answer.innerHTML = '<p><strong>' + rounded_area + '</strong> square meters</p>';
+    } else {
+        answer.innerHTML = '';
+        if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
+    }
+}
+
+</script>
+{% endblock %}

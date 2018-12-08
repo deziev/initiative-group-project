@@ -1,4 +1,4 @@
-#!/Users/deni/Desktop/projects/hackathon/dasein-backend/mysite/local/bin/python3.6
+#!/Users/deni/Desktop/projects/hackathon/dasein-backend/core/mysite/local/bin/python3.6
 from django.core import management
 
 if __name__ == "__main__":

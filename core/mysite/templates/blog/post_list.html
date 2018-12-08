@@ -1,0 +1,150 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!--header-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Email Marketing">
+    <meta name="author" content="E2 Agency">
+    <title>E2 Agency | Email Marketing</title>
+
+
+        <link rel="shortcut icon" type="image/png" href="{% static 'landing/images/favicon.png' %}"/>
+
+
+<script>
+    "use strict";
+
+    ! function() {
+        var t = window.driftt = window.drift = window.driftt || [];
+        if (!t.init) {
+            if (t.invoked) return void(window.console && console.error && console.error("Drift snippet included twice."));
+            t.invoked = !0, t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"],
+                t.factory = function(e) {
+                    return function() {
+                        var n = Array.prototype.slice.call(arguments);
+                        return n.unshift(e), t.push(n), t;
+                    };
+                }, t.methods.forEach(function(e) {
+                    t[e] = t.factory(e);
+                }), t.load = function(t) {
+                    var e = 3e5,
+                        n = Math.ceil(new Date() / e) * e,
+                        o = document.createElement("script");
+                    o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js";
+                    var i = document.getElementsByTagName("script")[0];
+                    i.parentNode.insertBefore(o, i);
+                };
+        }
+    }();
+    drift.SNIPPET_VERSION = '0.3.1';
+    drift.load('4xm338gw4rkc');
+    </script>
+    
+</head>
+<!--                 header ends                     -->
+<!--                     body               -->
+
+<body>
+
+    <link rel="stylesheet" href="{% static 'landing/css/normalize.min.css' %}"><script> </script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet"><script> </script>
+    <link rel="stylesheet" href="{% static 'landing/css/bootstrap.min.css' %}"><script> </script>
+    <link rel="stylesheet" href="{% static 'landing/css/style.min.css' %}"><script> </script>
+
+    <!--                     navigation bar                     -->
+      <nav class="navbar navbar-expand-md fixed-top navbar-light" style="z-index: 9999; background-color: #00a0ff;">
+            <div class="container" style="margin-top: 0; margin-bottom: 0;">
+            <a class="navbar-item" href="/" style="font-size: 30px; color: white"><img src="{% static 'landing/images/logo.png' %}" style="max-height: 50px;"></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content" aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation" style="border: 0px;font-size: 20px; color: white!important;">
+                <span class="navbar-toggler-icon" style="color: white; "></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="nav-content">
+                <div class="navbar-nav" style="margin-right: 5%;">
+                    <a class="nav-item nav-link" scroll="" href="/#about" style="color: white; margin: 2%;">About</a>
+                    <a class="nav-item nav-link" scroll="" href="/#features" style="color: white; margin: 2%;">Features</a>
+                      <a class="nav-item nav-link"  style="color: white;"><button href="#book-your-call" type="button" style="
+                        background-color: transparent;
+                        border: none;
+                        height: 50px;
+                        width: 154px;
+                        font-size: 20px;
+                        color: white;
+
+                  ">Become a Writer</button></a>
+
+                    <a class="nav-item nav-link" href="#book-your-call" style="color: white; padding-left:10px;
+  padding-right:10px;"><button type="button" href="#book-your-call" style="
+display: block;
+    height: 50px;
+    width: 160px;
+    padding: 2%;
+    background: #fff;
+    border: 2px solid #fff;
+    font-size: 18px;/*
+    border-radius: 30px;*/
+    color: #00a0ff;
+    transition: all .2s ease-in-out
+
+  ">WORK WITH US</button></a>
+                </div>
+            </div>
+        </div>
+        </nav>
+  <br>
+    <br>
+    <!--                  navigation bar ends                     -->
+    <section style="padding: 2.5%;">
+        <div class="container">
+        <h2 style="font-size: 40px; color: #00a0ff; font-weight: 999; text-align: center;">Recent News</h2>
+    </section>
+
+    <!--                  footer                            -->
+    <section id="footer" style="margin-bottom: 50px; margin-top: 50px; font-size: 16px;">
+        <div class="footer">
+            <footer class="container py-5">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <h2 style="font-size: 20px; margin-bottom: 3%;font-weight: 50">2018 E2 Agency © <br>All rights reserved</h2>
+                    </div>
+                    <div class="col-4 col-md">
+                        <h2 style="font-size: 20px; margin-bottom: 3%; font-weight: 50">COMPANY</h2>
+                        <hr>
+                        <ul class="list-unstyled text-small" style="font-weight: 50">
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="/#about">About</a></li>
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="/#company">Company</a></li>
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="/#features">Features</a></li>
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="#book-your-call">Become a Writer</a></li>
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="guarantee-tc.html">Guarantee</a></li>
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="privacy-policy.html">Privacy & Disclaimer Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-8 col-md">
+                        <h2 style="font-size: 20px; margin-bottom: 3%; font-weight: 50">Contact</h2>
+                        <hr>
+                        <ul class="list-unstyled text-small" style="font-weight: 50">
+                            <li style="margin-bottom: 3%;"><a class="text-muted" href="#book-your-call">Apply</a></li>
+                            <li style="margin-bottom: 3%;">
+                                <a class="text-muted" ">South Australia, SA 5012.</a></li>
+                            <li style="margin-bottom: 3%; "><a class="text-muted ">+67 0467670379</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+         
+
+    <!-- JAVASCRIPTS CORE-->
+</body>
+
+<script src="{% static 'landing/js/jquery.min.js' %}"></script>
+<script async src="{% static 'landing/js/bootstrap.min.js' %}"></script>
+</html>
