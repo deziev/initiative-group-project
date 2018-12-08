@@ -13,10 +13,6 @@ class LocationService {
             }
         }
     }
-
-    public async stash(data: LocationData): Promise<void> {
-        
-    }
 }
 
 export { LocationService };

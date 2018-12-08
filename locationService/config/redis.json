@@ -1,3 +1,5 @@
 {
-    "host": "localhost"
+    "host": "51.15.116.61",
+    "port": 6379,
+    "auth_pass": "aaae68ae3c6ab35b1d64ac29506a33c2b4f04f8c"
 }
