@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+
+echo "[BUILD] Building app"
+yarn install --pure-lockfile
+yarn compile
