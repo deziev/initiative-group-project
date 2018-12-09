@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  parameters {
+    string(name: 'service', defaultValue: 'locationService', description: 'Service to deploy')
+  }
   stages {
     stage('Build') {
       steps {
@@ -55,6 +58,5 @@ ssh $remote_user@$remote_host "service supervisor restart"'''
   environment {
     remote_user = 'root'
     remote_host = '51.15.116.61'
-    service = 'locationService'
   }
 }
